@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="McGill Urbanism is a student club for urban studies, sustainable cities, public transit, municipal politics and access to housing.">
+<title>McGill Urbanism</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: logo structure as page structure. Statement above a thick bar, wordmark lockup hanging below it, then sections separated by thin rules. Metro-line route for activities. */
+:root{
+  --bg:#ffffff;
+  --ink:#0c0c0d;
+  --mute:#585b61;
+  --soft:#f1f1f3;
+  --accent:#e4600a;
+  --accent-text:#b44600;
+  --display:'Jost','Futura','Century Gothic','Trebuchet MS',sans-serif;
+  --body:'Source Sans 3','Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0b0c;
+    --ink:#f4f4f5;
+    --mute:#a4a7ae;
+    --soft:#18181a;
+    --accent:#ff8a3d;
+    --accent-text:#ff9a55;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b0b0c;
+  --ink:#f4f4f5;
+  --mute:#a4a7ae;
+  --soft:#18181a;
+  --accent:#ff8a3d;
+  --accent-text:#ff9a55;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:18px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-underline-offset:.2em}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{
+  max-width:1120px;
+  margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{
+  font-family:var(--mono);
+  font-weight:500;
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--accent-text);
+}
+
+/* Top bar */
+.top{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px 28px;
+  padding-block:22px;
+}
+.brand{
+  font-family:var(--display);
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size:.95rem;
+  text-decoration:none;
+}
+.top nav{display:flex;flex-wrap:wrap;gap:6px 24px}
+.top nav a{
+  font-family:var(--display);
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:.82rem;
+  text-decoration:none;
+  padding-block:4px;
+  border-bottom:2px solid transparent;
+}
+.top nav a:hover{border-bottom-color:var(--accent)}
+
+/* Hero */
+.statement{
+  font-family:var(--display);
+  font-weight:500;
+  font-size:clamp(2.1rem,6.4vw,4.4rem);
+  line-height:1.04;
+  letter-spacing:-.01em;
+  max-width:19ch;
+  padding-block:clamp(28px,6vw,72px) clamp(28px,5vw,56px);
+}
+.bar{height:14px;background:var(--ink)}
+.lockup{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(3rem,13.5vw,9.5rem);
+  line-height:1;
+  letter-spacing:.07em;
+}
+.lockup .words{padding-top:.14em;margin-bottom:.1em}
+.lockup .words span{display:block}
+.lockup .u{
+  height:2.05em;
+  width:auto;
+  flex:none;
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:2;
+  stroke-linejoin:miter;
+  overflow:visible;
+}
+.intro{
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  gap:40px 64px;
+  padding-block:clamp(36px,6vw,72px);
+}
+.intro .lede{font-size:1.28rem;line-height:1.55;max-width:34em}
+.topics{list-style:none;margin:12px 0 0;padding:0}
+.topics li{
+  font-family:var(--display);
+  font-weight:500;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  font-size:1.02rem;
+  padding-block:11px;
+  border-top:1px solid var(--ink);
+}
+.topics li:last-child{border-bottom:1px solid var(--ink)}
+
+/* Sections */
+section{padding-block:clamp(48px,8vw,104px)}
+.rule-top{border-top:1px solid var(--ink)}
+.sec-head{display:grid;gap:12px;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{
+  font-weight:600;
+  font-size:clamp(1.9rem,4.4vw,3rem);
+  line-height:1.08;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+/* About */
+.about{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:40px 64px;
+  align-items:start;
+}
+.fact .num{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(5rem,17vw,11rem);
+  line-height:.9;
+  letter-spacing:-.02em;
+}
+.fact p{margin-top:16px;font-size:1.15rem;max-width:30em}
+.copy{display:grid;gap:20px;max-width:34em}
+.copy .em{
+  font-family:var(--display);
+  font-weight:500;
+  font-size:1.5rem;
+  line-height:1.3;
+}
+
+/* Route */
+.route{list-style:none;margin:0;padding:0;max-width:44rem}
+.route li{position:relative;padding-left:60px;padding-bottom:44px}
+.route li:last-child{padding-bottom:0}
+.route li::before{
+  content:"";
+  position:absolute;
+  left:11px;
+  top:18px;
+  bottom:-18px;
+  width:6px;
+  background:var(--accent);
+}
+.route li:last-child::before{display:none}
+.route li::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:4px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:var(--bg);
+  border:5px solid var(--ink);
+}
+.route h3{
+  font-weight:600;
+  font-size:1.55rem;
+  line-height:1.2;
+  margin:4px 0 8px;
+}
+.route p{max-width:36em;color:var(--mute)}
+
+/* Team */
+.team-label{
+  font-family:var(--display);
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  font-size:.9rem;
+  margin:0 0 16px;
+}
+.leads{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:28px 32px;
+}
+.leads li{border-top:3px solid var(--ink);padding-top:12px;min-width:0}
+.leads img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  object-position:50% 35%;
+  margin-bottom:14px;
+  background:var(--soft);
+}
+.leads .role{display:block;margin-bottom:6px}
+.leads .name{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:1.4rem;
+  line-height:1.2;
+}
+.members{
+  list-style:none;
+  margin:0;
+  padding:0;
+  columns:3 210px;
+  column-gap:32px;
+}
+.members li{
+  break-inside:avoid;
+  padding-block:9px;
+  border-top:1px solid var(--ink);
+  font-family:var(--display);
+  font-weight:500;
+  font-size:1.05rem;
+}
+
+/* Join */
+.join{background:var(--ink);color:var(--bg)}
+.join .eyebrow{color:var(--bg);opacity:.75}
+.join-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:36px 64px;
+  align-items:start;
+}
+.join h2{
+  font-weight:700;
+  font-size:clamp(2.6rem,8vw,5.6rem);
+  line-height:1;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.join .body{display:grid;gap:18px;max-width:32em}
+.join .body p{font-size:1.15rem}
+.join .small{font-size:.98rem;opacity:.8;border-top:1px solid currentColor;padding-top:18px}
+.join .tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.join .tags li{
+  font-family:var(--mono);
+  font-size:.82rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border:1px solid currentColor;
+  padding:6px 12px;
+}
+
+footer{padding-block:32px}
+footer .wrap{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:8px 32px;
+  font-size:.92rem;
+  color:var(--mute);
+}
+footer .aus{flex-basis:100%;color:var(--ink);font-weight:600}
+
+@media (max-width:760px){
+  body{font-size:17px}
+  .intro,.about,.join-grid{grid-template-columns:minmax(0,1fr)}
+  .intro .lede{font-size:1.15rem}
+  .lockup{letter-spacing:.05em}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
+
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="wrap top" id="top">
+  <a class="brand" href="#top">McGill Urbanism</a>
+  <nav aria-label="Sections">
+    <a href="#about">About</a>
+    <a href="#activities">What we do</a>
+    <a href="#team">Team</a>
+    <a href="#join">Join</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="statement">A community for people who care how cities work.</p>
+    <div class="bar"></div>
+    <h1 class="lockup" aria-label="McGill Urbanism">
+      <span class="words" aria-hidden="true"><span>URBA</span><span>NISM</span></span>
+      <svg class="u" viewBox="0 0 100 130" aria-hidden="true" focusable="false">
+        <path vector-effect="non-scaling-stroke" d="M0 0 V70 A50 60 0 0 0 100 70 V0 H68 V70 A18 28 0 0 1 32 70 V0 Z"/>
+      </svg>
+    </h1>
+
+    <div class="intro">
+      <p class="lede">McGill Urbanism is a student club for anyone interested in urban studies, sustainable cities, public transit, municipal politics and access to housing. We give those students a place to meet, learn and explore how the places we live are planned, built and shared.</p>
+      <div>
+        <p class="eyebrow">What we talk about</p>
+        <ul class="topics">
+          <li>Urban studies</li>
+          <li>Sustainable cities</li>
+          <li>Public transit</li>
+          <li>Municipal politics</li>
+          <li>Access to housing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section id="about" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">About the club</p>
+        <h2>Why urbanism</h2>
+      </div>
+      <div class="about">
+        <div class="fact">
+          <div class="num">83%</div>
+          <p>of Canadians live in urban areas. Cities are also where inequality is most prevalent, which can further marginalize vulnerable communities.</p>
+        </div>
+        <div class="copy">
+          <p class="em">Montreal is an urban hub, which makes it a good place to study urbanism as a wider idea.</p>
+          <p>We encourage students to think about how the structure of a city shapes the communities in it, and how that structure can create systemic problems like homelessness, gentrification and inequity.</p>
+          <p>We also show students how accessible the city can be through public and active transit, and what it takes to keep it that way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Line of the year</p>
+        <h2>What we do</h2>
+      </div>
+      <ol class="route">
+        <li>
+          <span class="eyebrow">Last semester</span>
+          <h3>A tour of the REM on the South Shore</h3>
+          <p>We toured the Brossard branch of the REM and visited its control centre. It showed how new urban rail systems support sustainability and access across Greater Montreal.</p>
+        </li>
+        <li>
+          <span class="eyebrow">Every fall</span>
+          <h3>Master's student panel</h3>
+          <p>We invite Master's students to talk about life after undergrad: the work, the programs and the internships. Members hear about careers in the field from people who have first-hand experience.</p>
+        </li>
+        <li>
+          <span class="eyebrow">Through the year</span>
+          <h3>Speakers, tours and socials</h3>
+          <p>Our events team plans talks, site visits and casual get-togethers, so members can learn about the city and about each other.</p>
+        </li>
+        <li>
+          <span class="eyebrow">Always</span>
+          <h3>A place to meet people</h3>
+          <p>Social connections are a big part of university. Meeting people who share your interests can lead to good friends and good ideas.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="team" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">2026/2027</p>
+        <h2>The team</h2>
+      </div>
+
+      <h3 class="team-label">Leadership</h3>
+      <ul class="leads">
+        <li><img src="img/geoffrey.jpg" alt="Geoffrey Nelson" width="720" height="684"><span class="eyebrow role">President</span><span class="name">Geoffrey Nelson</span></li>
+        <li><img src="img/ariana.jpg" alt="Ariana Blumstein" width="720" height="684"><span class="eyebrow role">Co-Vice President</span><span class="name">Ariana Blumstein</span></li>
+        <li><img src="img/eve.jpg" alt="Eve Carey" width="720" height="684"><span class="eyebrow role">Co-Vice President</span><span class="name">Eve Carey</span></li>
+        <li><img src="img/gabe.jpg" alt="Gabe Whitehouse" width="720" height="684"><span class="eyebrow role">VP Events</span><span class="name">Gabe Whitehouse</span></li>
+        <li><img src="img/pia.jpg" alt="Pia Douliery" width="720" height="684"><span class="eyebrow role">VP Events</span><span class="name">Pia Douliery</span></li>
+        <li><img src="img/tani.jpg" alt="Tani Berc" width="720" height="684"><span class="eyebrow role">VP Events</span><span class="name">Tani Berc</span></li>
+        <li><img src="img/ruby.jpg" alt="Ruby Czeban" width="720" height="684"><span class="eyebrow role">VP Communications</span><span class="name">Ruby Czeban</span></li>
+        <li><img src="img/sydney.jpg" alt="Sydney Philipson" width="720" height="684"><span class="eyebrow role">VP Finance</span><span class="name">Sydney Philipson</span></li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section id="join" class="join">
+    <div class="wrap">
+      <div class="join-grid">
+        <div>
+          <p class="eyebrow" style="margin-bottom:16px">Membership</p>
+          <h2>Free to join</h2>
+        </div>
+        <div class="body">
+          <p>McGill Urbanism charges no membership fee. Members can come to events and general meetings, and can bring ideas to the executive team.</p>
+          <p>General meetings open to every member are held at least once each semester.</p>
+          <p>Follow us on Instagram: <a href="https://www.instagram.com/mcgillurbanism/" target="_blank" rel="noopener">@mcgillurbanism</a></p>
+          <p>Join the conversation: <a href="https://chat.whatsapp.com/EwXfxrPEIeDK3mWUOgdFWt?mode=gi_t" target="_blank" rel="noopener">our WhatsApp group</a></p>
+          <ul class="tags">
+            <li>No fee</li>
+            <li>Open meetings</li>
+            <li>Bring your ideas</li>
+          </ul>
+          <p class="small">We follow the SSMU and Arts Undergraduate Society policies on discrimination and harassment. The club is committed to being an inclusive, respectful and accessible space for everyone who takes part.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>McGill Urbanism, 2026/2027 · <a href="https://www.instagram.com/mcgillurbanism/" target="_blank" rel="noopener">@mcgillurbanism</a></span>
+    <span>Works with the <a href="https://linktr.ee/mcgillgeography" target="_blank" rel="noopener">McGill Undergraduate Geography Society (MUGS)</a></span>
+    <span class="aus">A member of the <a href="https://ausmcgill.com/" target="_blank" rel="noopener">Arts Undergraduate Society of McGill University (AUS)</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
